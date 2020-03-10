@@ -1,0 +1,1460 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Crane</name>
+    </assembly>
+    <members>
+        <member name="T:Crane.Base.BaseAccess">
+            <summary>
+            Contains common behaviours that access object should have. 
+            </summary>
+        </member>
+        <member name="F:Crane.Base.BaseAccess.QueryOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.Base.BaseAccess.#ctor(Crane.QueryOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Crane.Base.BaseAccess.RegisterCacheProvider(Crane.CacheProvider.AbstractCraneCacheProvider)">
+            <summary>
+            
+            </summary>
+            <param name="cacheProvider"></param>
+        </member>
+        <member name="M:Crane.Base.BaseAccess.RemoveKeyFromCache(System.String)">
+            <summary>
+            Removes a cached result. The next time the sproc with the given key is called, it will be a fresh copy. 
+            </summary>
+            <param name="key"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Crane.Base.BaseAccess.ResetCache">
+            <summary>
+            Resets all cached items. Anything that is utilising cache will get a new copy next time query is executed. 
+            </summary>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Crane.Base.BaseAccess.AddGlobalPolicy(Crane.CacheProvider.CraneCachePolicy)">
+            <summary>
+            Set a custom policy on all cached items.
+            </summary>
+            <param name="policy">The custom policy.</param>
+        </member>
+        <member name="M:Crane.Base.BaseAccess.AddPolicy(System.String,Crane.CacheProvider.CraneCachePolicy)">
+            <summary>
+            Set a custom policy for a regular expression. If the regular expression matches, this policy will take precedence over the global policy (if one is set) and default policy. 
+            </summary>
+            <param name="regularExpression">The regular express pattern to match.</param>
+            <param name="policy">The custom policy.</param>
+        </member>
+        <member name="T:Crane.BaseInitialiser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.BaseInitialiser.ParamList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.BaseInitialiser.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.BaseInitialiser.OpenConn(System.Data.Common.DbConnection)">
+            <summary>
+            
+            </summary>
+            <param name="conn"></param>
+        </member>
+        <member name="M:Crane.BaseInitialiser.OpenConnAsync(System.Data.Common.DbConnection)">
+            <summary>
+            
+            </summary>
+            <param name="conn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseInitialiser.SetCommandProps(System.Data.Common.DbCommand,System.Data.Common.DbTransaction,System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="sqlCommand"></param>
+            <param name="commandTimeout"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseInitialiser.GetCleanSqlCommand(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sqlCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseInitialiser.IsStoredProcedure(System.String)">
+            <summary>
+            Determines if SQL CommandType is Text or StoredProcedure
+            </summary>
+            /// <param name="sqlCommand"></param>
+        </member>
+        <member name="T:Crane.Shared.BaseCommand">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Crane.Shared.BaseCommand.ExecuteNonQuery(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Interface for executing a command.
+            </summary>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.Shared.BaseCommand.ExecuteNonQueryAsync(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes a command asynchronously.
+            </summary>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.Shared.BaseCommand.AddSqlParameter(System.Data.SqlClient.SqlParameter)">
+            <summary>
+            Add an sql parameter to the command.
+            </summary>
+            <param name="sqlParameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.Shared.BaseCommand.AddSqlParameter(System.String,System.Object)">
+            <summary>
+            Add an sql parameter to the command.
+            </summary>
+            <param name="parameterName"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.Shared.BaseCommand.AddSqlParameter(System.String,System.Data.SqlDbType,System.Object)">
+            <summary>
+            Add an sql parameter to the command.
+            </summary>
+            <param name="parameterName"></param>
+            <param name="value"></param>
+            <param name="dbType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.Shared.BaseCommand.AddSqlParameterCollection(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter})">
+            <summary>
+            Add a list of parameters to the command.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.Shared.Types.CraneCommandType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.Shared.Types.CraneCommandType.Autodetect">
+            <summary>
+            Determines if query is Text or Stored Procedure automatically. This is the default option. 
+            </summary>
+        </member>
+        <member name="F:Crane.Shared.Types.CraneCommandType.Text">
+            <summary>
+            Execute a text based command
+            </summary>
+        </member>
+        <member name="F:Crane.Shared.Types.CraneCommandType.StoredProcedure">
+            <summary>
+            Execute a stored procedure
+            </summary>
+        </member>
+        <member name="T:Crane.BaseQuery">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Crane.BaseQuery.SprocObjectMapList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.BaseQuery.CustomColumnMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.BaseQuery.ValidateSelectColumns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.BaseQuery.CacheProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.BaseQuery.#ctor(Crane.QueryOptions)">
+            <inheritdoc />
+            <summary>
+            Interface for executing a query.
+            </summary>
+        </member>
+        <member name="M:Crane.BaseQuery.ValidateCacheKey(System.String)">
+            <summary>
+            Validates that cache provider is instantiated.
+            </summary>
+        </member>
+        <member name="M:Crane.BaseQuery.CustomColumnMapping``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String)">
+            <summary>
+            If a property name does not match the corresponding column in select statement 
+            (due to aliasing or unmatching columns between table and model representation), 
+            create a custom mapping. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">
+            Lambda style property selector (e.g. x => x.PropertyName)
+            </param>
+            <param name="destination"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderImpl``1(System.Action{System.Data.Common.DbDataReader,System.Collections.Generic.List{``0}},System.String,System.Nullable{System.Int32},System.String[],System.Boolean,System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action,System.Boolean)">
+            <summary>
+            Perform a query and map to model.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="getObjectDel"></param>
+            <param name="command">The command can either be plain SQL or reference to a stored procedure.</param>
+            <param name="commandTimeout"></param>
+            <param name="partitionOnArr"></param>
+            <param name="validateSelectColumns"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="saveCacheDel"></param>
+            <param name="valueOrStringType"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteDynamicReaderImpl(System.Action{System.Object,System.Collections.Generic.List{System.Object}},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="getObjectDel"></param>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="userConn"></param>
+            <param name="cacheKey"></param>
+            <param name="saveCacheDe"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteDynamicReaderImplAsync(System.Action{System.Object,System.Collections.Generic.List{System.Object}},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="getObjectDel"></param>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="userConn"></param>
+            <param name="cacheKey"></param>
+            <param name="saveCacheDe"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsyncImpl``1(System.Action{System.Data.Common.DbDataReader,System.Collections.Generic.List{``0}},System.String,System.Nullable{System.Int32},System.String[],System.Boolean,System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action,System.Boolean)">
+            <summary>
+            Performs asynchronous version of stored procedure.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="getObjectDel"></param>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="partitionOnArr"></param>
+            <param name="validateSelectColumns"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="saveCacheDel"></param>
+            <param name="valueOrStringType"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteScalar``1(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteScalarAsync``1(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.AddSqlParameter(System.Data.SqlClient.SqlParameter)">
+            <summary>
+            
+            </summary>
+            <param name="sqlParameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.AddSqlParameter(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameterName"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.AddSqlParameter(System.String,System.Data.SqlDbType,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parameterName"></param>
+            <param name="value"></param>
+            <param name="dbType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.AddSqlParameterCollection(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter})">
+            <summary>
+            Adds a list of SqlParameters to be passed into stored procedure.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader(System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cacheKey"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader(System.String,System.Action{System.Object},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="callBack"></param>
+            <param name="cacheKey"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``1(System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement against a single type.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``1(System.String,System.Action{``0},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement against a single type.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``2(System.String,System.Action{``0,``1},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``3(System.String,System.Action{``0,``1,``2},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``4(System.String,System.Action{``0,``1,``2,``3},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``5(System.String,System.Action{``0,``1,``2,``3,``4},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``6(System.String,System.Action{``0,``1,``2,``3,``4,``5},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``7(System.String,System.Action{``0,``1,``2,``3,``4,``5,``6},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``8(System.String,System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <typeparam name="TJoin7"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReader``9(System.String,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <typeparam name="TJoin7"></typeparam>
+            <typeparam name="TJoin8"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync(System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="cacheKey"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync(System.String,System.Action{System.Object},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="callBack"></param>
+            <param name="cacheKey"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="transaction"></param>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``1(System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement against a single type.
+            </summary>
+            <param name="command"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <typeparam name="TResult"></typeparam>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``1(System.String,System.Action{``0},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement against a single type. 
+            </summary>
+            <param name="command"></param>
+            <param name="callBack"></param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <typeparam name="TResult"></typeparam>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``2(System.String,System.Action{``0,``1},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``3(System.String,System.Action{``0,``1,``2},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``4(System.String,System.Action{``0,``1,``2,``3},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``5(System.String,System.Action{``0,``1,``2,``3,``4},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``6(System.String,System.Action{``0,``1,``2,``3,``4,``5},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``7(System.String,System.Action{``0,``1,``2,``3,``4,``5,``6},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``8(System.String,System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <typeparam name="TJoin7"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.BaseQuery.ExecuteReaderAsync``9(System.String,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.String,System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <summary>
+            Perform a select statement returning more than one entity. Please see documentation for more information if you need help. 
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <typeparam name="TJoin7"></typeparam>
+            <typeparam name="TJoin8"></typeparam>
+            <param name="command">The name of your stored procedure (with schema name if applicable).</param>
+            <param name="callBack">A delegate that is invoked for every row that is processed.</param>
+            <param name="partitionOn">"A pipe delimited list that separates the table according to the start of each entity e.g. "Id|Id|Id|Id|Id|Id|Id|Id"</param>
+            <param name="commandTimeout"></param>
+            <param name="dbConnection"></param>
+            <param name="cacheKey"></param>
+            <param name="transaction"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.QueryOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.QueryOptions.CacheProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.QueryOptions.ValidateSelectColumns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.CacheProvider.AbstractCraneCacheProvider">
+            <inheritdoc />
+        </member>
+        <member name="F:Crane.CacheProvider.AbstractCraneCacheProvider.Padlock">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.CacheProvider.AbstractCraneCacheProvider.GlobalSprocPolicy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Crane.CacheProvider.AbstractCraneCacheProvider.CustomSprocCachePolicyList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.TryGet``1(System.String,System.Collections.Generic.IEnumerable{``0}@)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.Add``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.Remove(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.ResetCache">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.AddGlobalPolicy(Crane.CacheProvider.CraneCachePolicy)">
+            <summary>
+            Set a custom policy on all cached items.
+            </summary>
+            <param name="policy">The custom policy.</param>
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.AddPolicy(System.String,Crane.CacheProvider.CraneCachePolicy)">
+            <summary>
+            Set a custom policy for a regular expression. If the regular expression matches, this policy will take precedence over the global policy (if one is set) and default policy. 
+            </summary>
+            <param name="regularExpression">The regular express pattern to match.</param>
+            <param name="policy">The custom policy.</param>
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.GetDateTimeOffsetFromTimespan(System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.CacheProvider.AbstractCraneCacheProvider.GetCachingStrategy(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.CacheProvider.CraneCachePolicy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CacheProvider.CraneCachePolicy.CacheKeyRegExp">
+            <summary>
+            Apply the policy only to the keys in a given regular expression.
+            </summary>
+        </member>
+        <member name="P:Crane.CacheProvider.CraneCachePolicy.InfiniteExpiration">
+            <summary>
+            Sets expiration to maximum value. 
+            </summary>
+        </member>
+        <member name="P:Crane.CacheProvider.CraneCachePolicy.AbsoluteExpiration">
+            <summary>
+            Set an absolute expiration
+            </summary>
+        </member>
+        <member name="P:Crane.CacheProvider.CraneCachePolicy.SlidingExpiration">
+            <summary>
+            Set a sliding expiration
+            </summary>
+        </member>
+        <member name="T:Crane.CacheProvider.MemoryCache.MemoryCacheProvider">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.MemoryCache.MemoryCacheProvider.TryGet``1(System.String,System.Collections.Generic.IEnumerable{``0}@)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.MemoryCache.MemoryCacheProvider.Add``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.MemoryCache.MemoryCacheProvider.Remove(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.CacheProvider.MemoryCache.MemoryCacheProvider.ResetCache">
+            <inheritdoc />
+        </member>
+        <member name="T:Crane.CacheProvider.MemoryCache.MemoryCacheSingleton">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CacheProvider.MemoryCache.MemoryCacheSingleton.Instance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.CraneHelper.GetOrdinalPartition(System.Collections.Generic.List{System.Data.DataRow},System.String[],System.Int32)">
+            <summary>
+            Gets the ordinal as a start index for each column in partitionOn string. 
+            </summary>
+            <param name="rows"></param>
+            <param name="partitionOnArr"></param>
+            <param name="mapCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.CraneHelper.GetObject``1(Crane.ICraneObjectMap,System.Data.IDataReader)">
+            <summary>
+            Resolves an object of type T and handles DBNull.Value gracefully.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sprocObjectMap"></param>
+            <param name="reader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.CraneHelper.GetDefaultValue(System.Reflection.PropertyInfo,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Gets the default value of type. Caches the default value for performance.
+            </summary>
+            <param name="member"></param>
+            <param name="defaultValueDic"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.GenericExtensions">
+            <summary>
+            Contains convenience extensions
+            </summary>
+        </member>
+        <member name="M:Crane.GenericExtensions.GetValueOrDefault``1(System.Data.SqlClient.SqlParameter)">
+            <summary>
+            Extension method for safely getting output parameters from SqlParameter
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sqlParameter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.ICraneNullType">
+            <summary>
+            Marker interface for overloaded ExecuteReader methods to encourage code reuse
+            </summary>
+        </member>
+        <member name="T:Crane.Interface.ICraneAccess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.Interface.ICraneAccess.Command">
+            <summary>
+            Contains methods for executing database commands.
+            </summary>
+        </member>
+        <member name="M:Crane.Interface.ICraneAccess.Query">
+            <summary>
+            Contains methods for performing select query on a database.
+            </summary>
+        </member>
+        <member name="M:Crane.Interface.ICraneAccess.RegisterCacheProvider(Crane.CacheProvider.AbstractCraneCacheProvider)">
+            <summary>
+            Register a cache provider that extends AbstractCacheProvider. 
+            </summary>
+            <param name="cacheProvider"></param>
+        </member>
+        <member name="M:Crane.Interface.ICraneAccess.RemoveKeyFromCache(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Crane.Interface.ICraneAccess.ResetCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.ICraneObjectMap">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.Columns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.CustomColumnMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.PropertyInfoCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.TypeInfoCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.DefaultValueDic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.ICraneObjectMap.ColumnOrdinalDic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.EightJoin`9">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <typeparam name="TJoin7"></typeparam>
+            <typeparam name="TJoin8"></typeparam>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join6">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join7">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.EightJoin`9.Join8">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.FiveJoin`6">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+        </member>
+        <member name="P:Crane.Model.FiveJoin`6.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FiveJoin`6.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FiveJoin`6.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FiveJoin`6.Join3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FiveJoin`6.Join4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FiveJoin`6.Join5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.FourJoin`5">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+        </member>
+        <member name="P:Crane.Model.FourJoin`5.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FourJoin`5.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FourJoin`5.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FourJoin`5.Join3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.FourJoin`5.Join4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.OneJoin`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+        </member>
+        <member name="P:Crane.Model.OneJoin`2.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.OneJoin`2.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.SevenJoin`8">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+            <typeparam name="TJoin7"></typeparam>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join6">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SevenJoin`8.Join7">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.SixJoin`7">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+            <typeparam name="TJoin4"></typeparam>
+            <typeparam name="TJoin5"></typeparam>
+            <typeparam name="TJoin6"></typeparam>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Join3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Join4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Join5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.SixJoin`7.Join6">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.ThreeJoin`4">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+            <typeparam name="TJoin3"></typeparam>
+        </member>
+        <member name="P:Crane.Model.ThreeJoin`4.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.ThreeJoin`4.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.ThreeJoin`4.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.ThreeJoin`4.Join3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.Model.TwoJoin`3">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TJoin1"></typeparam>
+            <typeparam name="TJoin2"></typeparam>
+        </member>
+        <member name="P:Crane.Model.TwoJoin`3.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.TwoJoin`3.Join1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.Model.TwoJoin`3.Join2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.CraneObjectMap`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Crane.CraneObjectMap`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.Columns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.CustomColumnMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.PropertyInfoCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.TypeInfoCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.DefaultValueDic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Crane.CraneObjectMap`1.ColumnOrdinalDic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Crane.MySql.Extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.MySql.Extensions.Query(MySql.Data.MySqlClient.MySqlConnection)">
+            <summary>
+            
+            </summary>
+            <param name="sqlConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.MySql.Extensions.Command(MySql.Data.MySqlClient.MySqlConnection)">
+            <summary>
+            
+            </summary>
+            <param name="sqlConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.MySql.MySqlServerAccess">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Crane.MySql.MySqlServerAccess.#ctor(System.String,Crane.QueryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlServerAccess.Command">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlServerAccess.Query">
+            <inheritdoc />
+        </member>
+        <member name="T:Crane.MySql.MySqlUserCommand">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserCommand.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserCommand.ExecuteNonQuery(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserCommand.ExecuteNonQueryAsync(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="T:Crane.MySql.MySqlUserQuery">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.#ctor(System.String,Crane.QueryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.ExecuteReaderImpl``1(System.Action{System.Data.Common.DbDataReader,System.Collections.Generic.List{``0}},System.String,System.Nullable{System.Int32},System.String[],System.Boolean,System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.ExecuteDynamicReaderImpl(System.Action{System.Object,System.Collections.Generic.List{System.Object}},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.ExecuteDynamicReaderImplAsync(System.Action{System.Object,System.Collections.Generic.List{System.Object}},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.ExecuteReaderAsyncImpl``1(System.Action{System.Data.Common.DbDataReader,System.Collections.Generic.List{``0}},System.String,System.Nullable{System.Int32},System.String[],System.Boolean,System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.ExecuteScalar``1(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.MySql.MySqlUserQuery.ExecuteScalarAsync``1(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="T:Crane.SqlServer.Extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.SqlServer.Extensions.Query(System.Data.SqlClient.SqlConnection)">
+            <summary>
+            
+            </summary>
+            <param name="sqlConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crane.SqlServer.Extensions.Command(System.Data.SqlClient.SqlConnection)">
+            <summary>
+            
+            </summary>
+            <param name="sqlConnection"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Crane.SqlServer.SqlServerAccess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerAccess.#ctor(System.String,Crane.QueryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerAccess.#ctor(System.String,System.Data.SqlClient.SqlCredential,Crane.QueryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerAccess.Command">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerAccess.Query">
+            <inheritdoc />
+        </member>
+        <member name="T:Crane.SqlServer.SqlServerCommand">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerCommand.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerCommand.ExecuteNonQuery(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerCommand.ExecuteNonQueryAsync(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="T:Crane.SqlServer.SqlServerQuery">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.#ctor(System.String,System.Data.SqlClient.SqlCredential,Crane.QueryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.ExecuteDynamicReaderImpl(System.Action{System.Object,System.Collections.Generic.List{System.Object}},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.ExecuteDynamicReaderImplAsync(System.Action{System.Object,System.Collections.Generic.List{System.Object}},System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.ExecuteReaderImpl``1(System.Action{System.Data.Common.DbDataReader,System.Collections.Generic.List{``0}},System.String,System.Nullable{System.Int32},System.String[],System.Boolean,System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.ExecuteReaderAsyncImpl``1(System.Action{System.Data.Common.DbDataReader,System.Collections.Generic.List{``0}},System.String,System.Nullable{System.Int32},System.String[],System.Boolean,System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String,System.Action,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.ExecuteScalar``1(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+        <member name="M:Crane.SqlServer.SqlServerQuery.ExecuteScalarAsync``1(System.String,System.Nullable{System.Int32},System.Data.Common.DbConnection,System.Data.Common.DbTransaction)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
